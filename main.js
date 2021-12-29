@@ -7,7 +7,7 @@ http.createServer(function(request, response)
 }).listen(3000);
 
 // Discord bot implements
-const discord = require('discord.js');
+const discord = require('v11-discord.js');
 const client = new discord.Client();
 
 client.on('ready', message =>
@@ -18,7 +18,7 @@ client.on('ready', message =>
 
 client.on('message', message =>
 {
-	if(message.isMemberMentioned(client.user))
+	if(message.isMemberMentioned(client.user) && message.author != client.user)
 	{
 		message.reply( '呼びましたか？' );
 		return;
