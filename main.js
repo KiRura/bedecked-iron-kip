@@ -12,7 +12,8 @@ const client = new discord.Client();
 
 client.on('ready', message =>
 {
-	.log('bot is ready!');
+  client.user.setPresence({ game: { name: 'This bot is made discord.js' } });
+  console.log('bot is ready!');
 });
 
 client.on('message', message =>
