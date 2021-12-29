@@ -20,7 +20,12 @@ client.on('message', message =>
 {
 	if(message.isMemberMentioned(client.user) && message.author != client.user)
 	{
-		message.randomreply( 'お日様が出たら日光浴〜 お月様が出たら月光浴〜' );
+		message.random.reply('お日様が出たら日光浴〜 お月様が出たら月光浴〜',
+                        'ヒルチャールのお兄さんが病気になった ヒルチャールのお姉さんが看病して〜 ヒルチャールのお兄さんが薬を飲んでも治らなァい！',
+                        'あれれェ〜？キョンシーが怖いのォ？',
+                        '私とお茶しな〜い？ ｴﾍﾍｪ',
+                        'ｳｧｰﾝそうですねぇ。あたり、魔神に呪われてます。それもヤバいくらいにぃ。',
+                        );
 		return;
 	}
 });
