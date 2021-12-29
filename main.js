@@ -20,15 +20,20 @@ client.on('message', message =>
 {
 	if(message.isMemberMentioned(client.user) && message.author != client.user)
 	{
-		message.random.reply('お日様が出たら日光浴〜 お月様が出たら月光浴〜',
-                        'ヒルチャールのお兄さんが病気になった ヒルチャールのお姉さんが看病して〜 ヒルチャールのお兄さんが薬を飲んでも治らなァい！',
-                        'あれれェ〜？キョンシーが怖いのォ？',
-                        '私とお茶しな〜い？ ｴﾍﾍｪ',
-                        'ｳｧｰﾝそうですねぇ。あたり、魔神に呪われてます。それもヤバいくらいにぃ。',
-                        );
-		return;
+		let arr = ["ヒルチャールのお兄さんが病気になった ヒルチャールのお姉さんが看病して〜 ヒルチャールのお兄さんが薬を飲んでも治らなァい！",
+               "ｳｧｰﾝそうですねぇ。あたり、魔神に呪われてます。それもヤバいくらいにぃ。",
+               "あれれェ〜？キョンシーが怖いのォ？",
+               "私とお茶しな〜い？ ｴﾍﾍｪ"
+               ];
+    let weight = [100, 100, 100, 100];
+    lottery(message.channel.id, arr);
 	}
 });
+
+function lottery(channelId, arr){
+  let random = Math.floor( Math.random() * arr.length);
+  send.message(channelId, arr[random]);
+}
 
 if(process.env.DISCORD_BOT_TOKEN == undefined)
 {
