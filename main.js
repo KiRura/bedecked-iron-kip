@@ -12,7 +12,7 @@ const client = new discord.Client();
 
 client.on('ready', message =>
 {
-  client.user.setPresence({ game: { name: 'This bot is made discord.js' } });
+  client.user.setPresence({ game: { name: 'テッテテー！騙されました！' } });
   console.log('bot is ready!');
 });
 
@@ -20,39 +20,10 @@ client.on('message', message =>
 {
 	if(message.isMemberMentioned(client.user) && message.author != client.user)
 	{
-		message.reply( '呼びましたか？' );
+		message.randomreply( 'お日様が出たら日光浴〜 お月様が出たら月光浴〜' );
 		return;
 	}
 });
-
-npm i ytdl-core
-const ytdl = require('ytdl-core')
-
-client.on('message', async message => {
-  // メッセージが "!yt" からはじまっていてサーバー内だったら実行する
-  if (message.content.startsWith('!yt') && message.guild) {
-    // メッセージから動画URLだけを取り出す
-    const url = message.content.split(' ')[1]
-    // まず動画が見つからなければ処理を止める
-    if (!ytdl.validateURL(url)) return message.reply('動画が存在しません！')
-    // コマンドを実行したメンバーがいるボイスチャンネルを取得
-    const channel = message.member.voiceChannel
-    // コマンドを実行したメンバーがボイスチャンネルに入ってなければ処理を止める
-    if (!channel) return message.reply('先にボイスチャンネルに参加してください！')
-    // チャンネルに参加
-    const connection = await channel.join()
-    // 動画の音源を取得
-    const stream = ytdl(ytdl.getURLVideoID(url), { filter: 'audioonly' })
-    // 再生
-    const dispatcher = connection.playStream(stream)
-    
-    // 再生が終了したら抜ける
-    dispatcher.on('end', () => {
-      channel.leave()
-    })
-  }
-})
-
 
 if(process.env.DISCORD_BOT_TOKEN == undefined)
 {
