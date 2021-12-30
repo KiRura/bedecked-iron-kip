@@ -16,24 +16,19 @@ client.on('ready', message =>
   console.log('bot is ready!');
 });
 
-client.on('message', message =>
-{
-	if(message.isMemberMentioned(client.user) && message.author != client.user)
-	{
-		let arr = ["ヒルチャールのお兄さんが病気になった ヒルチャールのお姉さんが看病して〜 ヒルチャールのお兄さんが薬を飲んでも治らなァい！",
-               "ｳｧｰﾝそうですねぇ。あたり、魔神に呪われてます。それもヤバいくらいにぃ。",
-               "あれれェ〜？キョンシーが怖いのォ？",
-               "私とお茶しな〜い？ ｴﾍﾍｪ"
-               ];
-    let weight = [100, 100, 100, 100];
-    lottery(message.channel.id, arr);
-	}
-});
-
+client.on('message', message =>{
+	if(message.isMemberMentioned(client.user) && message.author != client.user){
+  let arr = ["ヒルチャールのお兄さんが病気になった ヒルチャールのお姉さんが看病して〜 ヒルチャールのお兄さんが薬を飲んでも治らなァい！", "ｳｧｰﾝそうですねぇ。あたり、魔神に呪われてます。それもヤバいくらいにぃ。", "あれれェ〜？キョンシーが怖いのォ？", "私とお茶しな〜い？ ｴﾍﾍｪ"];
+  var random = Math.floor(Math.random() * arr.length);
+  var result = arr[random];
+  message.reply(result);
 function lottery(channelId, arr){
   let random = Math.floor( Math.random() * arr.length);
   send.message(channelId, arr[random]);
 }
+  }
+}
+          
 
 if(process.env.DISCORD_BOT_TOKEN == undefined)
 {
