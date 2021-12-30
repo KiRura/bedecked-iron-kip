@@ -17,7 +17,7 @@ client.on('ready', message =>
 });
 
 client.on('message', message => {
-     if (message.content.match(/おはよう/,/お早よう/,/お早う/,/オハヨウ/,/ｵﾊﾖｳ/)) {
+     if (message.content.match(/おはよう/, /お早よう/, /お早う/, /オハヨウ/, /ｵﾊﾖｳ/)) {
        message.reply("歯磨いた？顔洗った？朝ごはん食べた？今日も往生堂は貴方をウェルカムだよ！");
      } else if (message.content.match(/おやすみ/)) {
          message.reply("永遠の眠りに就いてね…");
@@ -26,6 +26,19 @@ client.on('message', message => {
      }
   }
 );
+
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("おはよう", "お早う", "お早よう", "オハヨウ", "ｵﾊﾖｳ")) {
+        message.channel.send('おはよう！歯磨いた？顔洗った？朝ごはん食べた？今日も往生堂は貴方をウェルカムだよ！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("おやすみ", "お休み", "オヤスミ", "おヤスミ")) {
+        message.channel.send('おはよう！歯磨いた？顔洗った？朝ごはん食べた？今日も往生堂は貴方をウェルカムだよ！');
+    }
+});
 
 // Discord TOKEN error
 if(process.env.DISCORD_BOT_TOKEN == undefined)
