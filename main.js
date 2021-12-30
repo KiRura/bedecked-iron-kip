@@ -15,6 +15,7 @@ client.on('ready', message =>
   client.user.setPresence({ game: { name: 'テッテテー！騙されました！' } });
   console.log('bot is ready!');
 });
+
 const ytdl = require('ytdl-core')
 
 client.on('message', async message => {
