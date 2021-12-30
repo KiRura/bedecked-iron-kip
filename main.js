@@ -16,38 +16,16 @@ client.on('ready', message =>
   console.log('bot is ready!');
 });
 
-client.on("message", message => {
-  // bot自身の発言は無視
-  if (message.author.bot) return;
+client.on('message', message =>{
+  if (message.author.id == client.user.id || message.author.bot){
+    return;
+  }
 
-  //　敗北者という単語が含まれていたときの処理
-  if (message.content.includes("敗北者")) {
-    if (message.isMemberMentioned(client.user) && message.member.voiceChannel) {
-      /* ボイスチャンネルにいる人がbotにメンションをしたときの処理 */
-      message.member.voiceChannel
-        .join()
-        .then(connection => {
-          const fileNames = ["nc186194.mp3"];
-          // 複数の音声データのうちいずれかをランダムで選ぶ
-          const fileName =
-            fileNames[Math.floor(Math.random() * fileNames.length)];
-
-          // 再生 再生終了時にボイスチャンネルから切断
-          const dispatcher = connection.playFile(fileName);
-          dispatcher.on("end", () => connection.disconnect());
-        })
-        .catch(console.error);
-    } else {
-      /* 敗北者という単語が含まれているが、
-      メンションでなかったり発言者がボイスチャンネルにいないときの処理 */
-      const texts = [
-        "ハァ...ハァ...敗北者...? 取り消せよ...!!","今の言葉...!!",
-      ];
-
-      // メンションする文字列をランダムで選択
-      const replyText = texts[Math.floor(Math.random() * texts.length)];
-      message.reply(replyText).catch(console.error);
-    }
+  if (message.content.match(/胡桃<:white_flower:/)) {
+    let react = message.guild.emojis.get('723422237973151776');
+    message.react(react)
+      .then(message => console.log("リアクション: <:5star:723422237973151776>"))
+      .catch(console.error);
   }
 });
 
