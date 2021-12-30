@@ -16,32 +16,20 @@ client.on('ready', message =>
   console.log('bot is ready!');
 });
 
-const ytdl = require('ytdl-core')
-
-client.on('message', async message => {
-  // メッセージが "!yt" からはじまっていてサーバー内だったら実行する
-  if (message.content.startsWith('>>yt') && message.guild) {
-    // メッセージから動画URLだけを取り出す
-    const url = message.content.split(' ')[1]
-    // まず動画が見つからなければ処理を止める
-    if (!ytdl.validateURL(url)) return message.reply('動画が存在しません！')
-    // コマンドを実行したメンバーがいるボイスチャンネルを取得
-    const channel = message.member.voiceChannel
-    // コマンドを実行したメンバーがボイスチャンネルに入ってなければ処理を止める
-    if (!channel) return message.reply('先にボイスチャンネルに参加してください！')
-    // チャンネルに参加
-    const connection = await channel.join()
-    // 動画の音源を取得
-    const stream = ytdl(ytdl.getURLVideoID(url), { filter: 'audioonly' })
-    // 再生
-    const dispatcher = connection.playStream(stream)
-    
-    // 再生が終了したら抜ける
-    dispatcher.on('end', () => {
-      channel.leave()
-    })
+client.on('message', message => {
+  if (message.channel.topic == null) {
+    return;
   }
-})
+  if (message.channel.topic.match(/Botと会話/)){
++     if (message.content.match(/おはよう/)) {
++       message.reply("おはようございます！今日もいい1日を！");
++     } else if (message.content.match(/おやすみ/)) {
++         message.reply("おやすみなさい！いい夢を！");
++     } else if (message.content.match(/疲れた/)) {
++         message.reply("お疲れ様！ゆっくり休んでね！");
++     }
+  }
+});
 
 // Discord TOKEN error
 if(process.env.DISCORD_BOT_TOKEN == undefined)
