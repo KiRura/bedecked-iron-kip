@@ -17,19 +17,15 @@ client.on('ready', message =>
 });
 
 client.on('message', message => {
-  if (message.channel.topic == null) {
-    return;
+     if (message.content.match(/おはよう/,/お早よう/,/お早う/,/オハヨウ/,/ｵﾊﾖｳ/)) {
+       message.reply("歯磨いた？顔洗った？朝ごはん食べた？今日も往生堂は貴方をウェルカムだよ！");
+     } else if (message.content.match(/おやすみ/)) {
+         message.reply("永遠の眠りに就いてね…");
+     } else if (message.content.match(/疲れた/)) {
+         message.reply("往生堂で休んでく？今ならグッズが無料で貰えるよ！");
+     }
   }
-  if (message.channel.topic.match(/Botと会話/)){
-+     if (message.content.match(/おはよう/)) {
-+       message.reply("おはようございます！今日もいい1日を！");
-+     } else if (message.content.match(/おやすみ/)) {
-+         message.reply("おやすみなさい！いい夢を！");
-+     } else if (message.content.match(/疲れた/)) {
-+         message.reply("お疲れ様！ゆっくり休んでね！");
-+     }
-  }
-});
+);
 
 // Discord TOKEN error
 if(process.env.DISCORD_BOT_TOKEN == undefined)
