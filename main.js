@@ -16,19 +16,18 @@ client.on('ready', message =>
   console.log('bot is ready!');
 });
 
-client.on('message', message =>{
-  if (message.author.id == client.user.id || message.author.bot){
-    return;
+client.on('message', async message => {
+  if (message.content.startsWith('!ikirura') && message.guild) {
+  	if (!message.member.permissions.has("BAN_MEMBERS")) return message.channel.send('あなたにはユーザーをBANする権限がありません');
+    if (message.mentions.members.size !== 1) return message.channel.send('BANするメンバーを1人指定してください');
+    const member = message.mentions.members.first();
+    if (!member.bannable) return message.channel.send('botがこのユーザーをBANすることができません');
+         
+    await member.ban();
+         
+    await message.channel.send(`${member.user.tag} をBANしました`);
   }
-
-  if (message.content === "イキルラ"){
-    let reply_text = "<:sinekasugomi:924281461346025512>";
-    message.send(reply_text)
-      .then(message => console.log("Sent message: " + reply_text))
-      .catch(console.error);
-    return;
-  }
-});
+})
 
 if(process.env.DISCORD_BOT_TOKEN == undefined)
 {
