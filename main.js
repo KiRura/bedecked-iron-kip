@@ -1,4 +1,4 @@
-// Response for Uptime Robot
+// ログイン的な何か
 const http = require('http');
 http.createServer(function(request, response)
 {
@@ -6,37 +6,108 @@ http.createServer(function(request, response)
 	response.end('Discord bot is active now \n');
 }).listen(3000);
 
-// Discord bot implements
+// Discord.jsのバージョン
 const discord = require('v11-discord.js');
 const client = new discord.Client();
 
+//○○をプレイ中
 client.on('ready', message =>
 {
   client.user.setPresence({ game: { name: 'テッテテー！騙されました！' } });
   console.log('bot is ready!');
 });
 
-client.on('message', message => {
-     if (message.content.match(/おはよう/, /お早よう/, /お早う/, /オハヨウ/, /ｵﾊﾖｳ/)) {
-       message.reply("歯磨いた？顔洗った？朝ごはん食べた？今日も往生堂は貴方をウェルカムだよ！");
-     } else if (message.content.match(/おやすみ/)) {
-         message.reply("永遠の眠りに就いてね…");
-     } else if (message.content.match(/疲れた/)) {
-         message.reply("往生堂で休んでく？今ならグッズが無料で貰えるよ！");
-     }
-  }
-);
-
+//キーワードに反応してメッセージを返す
 client.on('message', message => {
     if (message.author.bot) return;
-    if (message.content.includes("おはよう", "お早う", "お早よう", "オハヨウ", "ｵﾊﾖｳ")) {
+    if (message.content.includes("おはよう")) {
         message.channel.send('おはよう！歯磨いた？顔洗った？朝ごはん食べた？今日も往生堂は貴方をウェルカムだよ！');
     }
 });
 client.on('message', message => {
     if (message.author.bot) return;
-    if (message.content.includes("おやすみ", "お休み", "オヤスミ", "おヤスミ")) {
+    if (message.content.includes("お早う")) {
         message.channel.send('おはよう！歯磨いた？顔洗った？朝ごはん食べた？今日も往生堂は貴方をウェルカムだよ！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("お早よう")) {
+        message.channel.send('おはよう！歯磨いた？顔洗った？朝ごはん食べた？今日も往生堂は貴方をウェルカムだよ！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("オハヨウ")) {
+        message.channel.send('おはよう！歯磨いた？顔洗った？朝ごはん食べた？今日も往生堂は貴方をウェルカムだよ！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("ｵﾊﾖｳ")) {
+        message.channel.send('おはよう！歯磨いた？顔洗った？朝ごはん食べた？今日も往生堂は貴方をウェルカムだよ！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("おやすみ")) {
+        message.channel.send('永遠の眠りに就いてね…！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("お休み")) {
+        message.channel.send('永遠の眠りに就いてね…！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("オヤスミ")) {
+        message.channel.send('永遠の眠りに就いてね…！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("おヤスミ")) {
+        message.channel.send('永遠の眠りに就いてね…！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("ｵﾔｽﾐ")) {
+        message.channel.send('永遠の眠りに就いてね…！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("疲れた")) {
+        message.channel.send('往生堂で休んでく？今ならグッズが無料で貰えるよ！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("つかれた")) {
+        message.channel.send('往生堂で休んでく？今ならグッズが無料で貰えるよ！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("ツカレタ")) {
+        message.channel.send('往生堂で休んでく？今ならグッズが無料で貰えるよ！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("ﾂｶﾚﾀ")) {
+        message.channel.send('往生堂で休んでく？今ならグッズが無料で貰えるよ！');
+    }
+});
+
+//メッセージに反応して行動を起こす
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("いきるら")) {
+        member.kick();
     }
 });
 
