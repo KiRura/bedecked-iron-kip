@@ -86,12 +86,6 @@ client.on('message', message => {
 });
 client.on('message', message => {
     if (message.author.bot) return;
-    if (message.content.includes("おやす")) {
-        message.channel.send('永遠の眠りに就いてね…！');
-    }
-});
-client.on('message', message => {
-    if (message.author.bot) return;
     if (message.content.includes("疲れた")) {
         message.channel.send('往生堂で休んでく？今ならグッズが無料で貰えるよ！');
     }
