@@ -26,6 +26,12 @@ client.on('message', message => {
 });
 client.on('message', message => {
     if (message.author.bot) return;
+    if (message.content.includes("おはよ")) {
+        message.channel.send('おはよう！歯磨いた？顔洗った？朝ごはん食べた？今日も往生堂は貴方をウェルカムだよ！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
     if (message.content.includes("お早う")) {
         message.channel.send('おはよう！歯磨いた？顔洗った？朝ごはん食べた？今日も往生堂は貴方をウェルカムだよ！');
     }
@@ -80,6 +86,12 @@ client.on('message', message => {
 });
 client.on('message', message => {
     if (message.author.bot) return;
+    if (message.content.includes("おやす")) {
+        message.channel.send('永遠の眠りに就いてね…！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
     if (message.content.includes("疲れた")) {
         message.channel.send('往生堂で休んでく？今ならグッズが無料で貰えるよ！');
     }
@@ -100,6 +112,30 @@ client.on('message', message => {
     if (message.author.bot) return;
     if (message.content.includes("ﾂｶﾚﾀ")) {
         message.channel.send('往生堂で休んでく？今ならグッズが無料で貰えるよ！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("ただいま")) {
+        message.channel.send('おかえり！往生堂で御馳走を用意してるよ！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("ただま")) {
+        message.channel.send('おかえり！往生堂で御馳走を用意してるよ！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("タダイマ")) {
+        message.channel.send('おかえり！往生堂で御馳走を用意してるよ！');
+    }
+});
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("ﾀﾀﾞｲﾏ")) {
+        message.channel.send('おかえり！往生堂で御馳走を用意してるよ！');
     }
 });
 
