@@ -13,7 +13,7 @@ const client = new discord.Client();
 //○○をプレイ中
 client.on('ready', message =>
 {
-  client.user.setPresence({ game: { name: 'う〜んそうですね〜。当たり、魔神に呪われてます！それもヤバいくらいに！' } });
+  client.user.setPresence({ game: { name: 'う〜んそうですね〜。あたり、魔神に呪われてます！それもヤバいくらいに！' } });
   console.log('bot is ready!');
 });
 
@@ -140,10 +140,17 @@ client.on('message', message => {
 });
 client.on('message', message => {
     if (message.author.bot) return;
-    if (message.content.includes("やす")) {
+    if (message.content.includes("やす君")) {
         message.channel.send('やす君？あの人はちょっと関わりにくいよ…てか、ブロックされてて見えない！');
     }
 });
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("ゆす")) {
+        message.channel.send('やす君？あの人はちょっと関わりにくいよ…てか、ブロックされてて見えない！');
+    }
+});
+
 
 //メッセージに反応して行動を起こす
 client.on('message', message => {
