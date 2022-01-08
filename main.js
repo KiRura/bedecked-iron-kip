@@ -20,7 +20,7 @@ client.on('message', async msg => {
     /おは|おっは|オハ|ｵﾊ/g
   ))
  {
-　msg.channel.send('おはよう！今日も1日頑張ってね！！')
+　msg.react('929303726169157692')
    return;
 }})
 
