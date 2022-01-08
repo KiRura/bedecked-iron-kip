@@ -7,15 +7,14 @@ http.createServer(function(request, response)
 }).listen(3000);
 
 // Discord.jsのバージョン
-const discord = require('v12.5.3-discord.js');
-const client = new discord.Client();
+const { Client, Intents } = require('discord.js')
+const client = new Client({ intents: Object.keys(Intents.FLAGS) })
 
 //○○をプレイ中
-client.on('ready', message =>
-{
-  client.user.setPresence({ game: { name: 'う〜んそうですね〜。あたり、魔神に呪われてます！それもヤバいくらいに！' } });
-  console.log('bot is ready!');
-});
+client.user.setPresence(
+  { activity: 
+   { name: client.channels.cache.size+"サーバーに導入中" }, 
+   status: "online" });
 
 //キーワードに反応してメッセージを返す
 
