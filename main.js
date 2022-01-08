@@ -1,4 +1,4 @@
-// ログイン的な何か
+//ログイン的な何か
 const http = require('http')
 http
   .createServer(function(request, response) {
@@ -7,7 +7,7 @@ http
   })
   .listen(3000)
 
-// Discord.jsのバージョン
+//Discord.jsのバージョン
 const { Client, Intents } = require('discord.js')
 const client = new Client({ intents: Intents.ALL })
 
@@ -17,7 +17,7 @@ client.on('ready', () => {
     client.user.setActivity({
       name: `${client.ws.ping}ms`
     })
-  }, 5000)
+  }, 10000)
 })
 
 //プレフィックス指定
@@ -25,6 +25,7 @@ const prefix = 'hu!'
 
 //メッセージ送信系
 client.on('message', async msg => {
+  
   //おはように反応
   if(msg.author.bot) return;
   if(msg.content.match(
@@ -33,7 +34,7 @@ client.on('message', async msg => {
   }
   
   //投票機能
-    if (!msg.content.startsWith(prefix)) return;
+  if (!msg.content.startsWith(prefix)) return;
   const [command, ...args] = msg.content.slice(prefix.length).split(' ')
   if (command === 'poll') {
     const [title, ...choices] = args
@@ -51,10 +52,11 @@ client.on('message', async msg => {
   }
 })
 
-// Discord TOKEN error
+//トークンエラー
 if (process.env.DISCORD_BOT_TOKEN == undefined) {
   console.error('tokenが設定されていません！')
   process.exit(0)
 }
 
+//謎
 client.login(process.env.DISCORD_BOT_TOKEN)
