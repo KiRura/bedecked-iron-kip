@@ -4,11 +4,14 @@
   "description": "discord bot sample on Glitch",
   "main": "main.js",
   "dependencies": {
-    "v12.5.3-discord.js":"12.5.3"
+    "discord.js": "^12.5.3"
   },
   "devDependencies": {},
   "scripts": {
     "start": "node main.js",
     "test": "node main.js"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }
