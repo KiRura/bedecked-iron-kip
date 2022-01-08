@@ -20,12 +20,6 @@ client.on('ready', message =>
 //キーワードに反応してメッセージを返す
 client.on('message', message => {
     if (message.author.bot) return;
-    if (message.content.includes("おはよう")) {
-        message.channel.send('おはよう！歯磨いた？顔洗った？朝ごはん食べた？今日も往生堂は貴方をウェルカムだよ！');
-    }
-});
-client.on('message', message => {
-    if (message.author.bot) return;
     if (message.content.includes("おはよ")) {
         message.channel.send('おはよう！歯磨いた？顔洗った？朝ごはん食べた？今日も往生堂は貴方をウェルカムだよ！');
     }
@@ -56,7 +50,7 @@ client.on('message', message => {
 });
 client.on('message', message => {
     if (message.author.bot) return;
-    if (message.content.includes("おやすみ")) {
+    if (message.content.includes("おやす")) {
         message.channel.send('永遠の眠りに就いてね…！');
     }
 });
@@ -144,7 +138,12 @@ client.on('message', message => {
         message.channel.send('やす君？あの人はちょっと関わりにくいよ…てか、ブロックされてて見えない！');
     }
 });
-
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.includes("殺す")) {
+        message.channel.send('そんな命を軽々と扱わないでよ！？');
+    }
+});
 
 //メッセージに反応して行動を起こす
 client.on('message', message => {
