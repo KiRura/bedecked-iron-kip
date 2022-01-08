@@ -20,7 +20,7 @@ client.on('ready', message =>
 //キーワードに反応してメッセージを返す
 client.on('message', message => {
     if (message.author.bot) return;
-    if (message.content.includes("おはよ")) {
+    if (message.content.includes("おは")) {
         message.channel.send('おはよう！歯磨いた？顔洗った？朝ごはん食べた？今日も往生堂は貴方をウェルカムだよ！');
     }
 });
