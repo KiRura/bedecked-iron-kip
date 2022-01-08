@@ -53,13 +53,13 @@ client.on('message', async msg => {
   }
   
   //ユーザーの使用デバイス
-  if (msg.content === 'status') {
+  if (!msg.content.startsWith(prefix)) return;
+  if (command === 'stts') {
     const userStatus = msg.author.presence.clientStatus
-
     if (!userStatus) {
       return msg.channel.send('どのデバイスからもアクセスされていません。')
     }
-
+    
     msg.channel.send(
       [
         'desktop: ' + (userStatus.desktop || 'offline'),
