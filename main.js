@@ -7,7 +7,7 @@ http.createServer(function(request, response)
 }).listen(3000);
 
 // Discord.jsのバージョン
-const discord = require('v11-discord.js');
+const discord = require('v12.5.3-discord.js');
 const client = new discord.Client();
 
 //○○をプレイ中
