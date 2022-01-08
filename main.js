@@ -8,26 +8,23 @@ http.createServer(function(request, response)
 
 // Discord.jsのバージョン
 const { Client, Intents } = require('discord.js')
-const client = new Client({ intents: Object.keys(Intents.FLAGS) })
+const client = new Client({ intents: Intents.ALL })
 
 //○○をプレイ中
-client.user.setPresence(
-  { activity: 
-   { name: client.channels.cache.size+"サーバーに導入中" }, 
-   status: "online" });
+client.user.setActivity(
+  client.user.setPresence(
+    { activity: 
+     { name: client.channels.cache.size+"個のサーバーに導入中" }, 
+     status: "online" 
+    }
+  )
+);
 
 //キーワードに反応してメッセージを返す
-
-client.on('message', message => {
-    if (message.author.bot) return;
-    if (message.content.includes("やす君")) {
-        message.channel.send('やす君？あの人はちょっと関わりにくいよ…てか、ブロックされてて見えない！');
-    }
-    if (message.author.bot) return;
-    if (message.content.includes("ゆす")) {
-        message.channel.send('やす君？あの人はちょっと関わりにくいよ…てか、ブロックされてて見えない！');
-    }
-});
+Client.on('message', async msg => {
+if(msg.content === 'おは'){
+　msg.channel.send('おはよう！今日も1日頑張ってね！！')
+}})
 
 //メッセージに反応して行動を起こす
 
