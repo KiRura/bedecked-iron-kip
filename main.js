@@ -12,23 +12,44 @@ const { Client, Intents } = require('discord.js')
 const client = new Client({ intents: Intents.ALL })
 
 //○○をプレイ中
-client.user.act('テッテテー！騙されました！', { type: 'PLAYING' })
+client.on('ready', () => {
+  setInterval(() => {
+    client.user.setActivity({
+      name: `${client.ws.ping}ms`
+    })
+  }, 5000)
+})
 
 //キーワードに反応してメッセージを返す
 client.on('message', async msg => {
   if(msg.author.bot) return;
   if(msg.content.match(
-    /おは|おっは|オハ|ｵﾊ/g
-  ))
- {
-　msg.react('929303726169157692')
-   const filter = (reaction, user) => user.id === msg.author.id && reaction.emoji.name === '929303726169157692'
-  msg.awaitReactions({ filter, max: 1, time: 15000, errors: ['time'] })
-  .then(() => console.log('リアクションされました'))
-  .catch(() => {}) // 時間切れの処理。エラーを防ぐために何もしない場合でも書く必要がある（何かすることもできる）
-}})
+    /おは|おっは|オハ|ｵﾊ/g)){
+    msg.react('929303726169157692')
+  }
+})
 
-//メッセージに反応して行動を起こす
+//投票機能
+const prefix = '!'
+
+client.on('message', async msg => {
+  if (!msg.content.startsWith(prefix)) return
+  const [command, ...args] = msg.content.slice(prefix.length).split(' ')
+  if (command === 'poll') {
+    const [title, ...choices] = args
+    if (!title) return msg.channel.send('タイトルを指定してください')
+    const emojis = ['🇦', '🇧', '🇨', '🇩']
+    if (choices.length < 2 || choices.length > emojis.length)
+      return msg.channel.send(`選択肢は2から${emojis.length}つを指定してください`)
+    const poll = await msg.channel.send({
+      embed: {
+        title: title,
+        description: choices.map((c, i) => `${emojis[i]} ${c}`).join('\n')
+      }
+    });
+    emojis.slice(0, choices.length).forEach(emoji => poll.react(emoji))
+  }
+})
 
 // Discord TOKEN error
 if (process.env.DISCORD_BOT_TOKEN == undefined) {
