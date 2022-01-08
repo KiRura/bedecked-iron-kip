@@ -20,20 +20,20 @@ client.on('ready', () => {
   }, 5000)
 })
 
-//キーワードに反応してメッセージを返す
+//プレフィックス指定
+const prefix = 'hu!'
+
+//メッセージ送信系
 client.on('message', async msg => {
+  //おはように反応
   if(msg.author.bot) return;
   if(msg.content.match(
     /おは|おっは|オハ|ｵﾊ/g)){
     msg.react('929303726169157692')
   }
-})
-
-//投票機能
-const prefix = '!'
-
-client.on('message', async msg => {
-  if (!msg.content.startsWith(prefix)) return
+  
+  //投票機能
+    if (!msg.content.startsWith(prefix)) return;
   const [command, ...args] = msg.content.slice(prefix.length).split(' ')
   if (command === 'poll') {
     const [title, ...choices] = args
