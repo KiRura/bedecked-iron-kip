@@ -22,10 +22,9 @@ client.on('message', async msg => {
  {
 　msg.react('929303726169157692')
    const filter = (reaction, user) => user.id === msg.author.id && reaction.emoji.name === '929303726169157692'
-  msg.awaitReactions({ filter, max: 2, time: 15000, errors: ['time'] })
-  .then(() => msg.channel.send('おはよう！顔洗った？歯磨いた？朝ご飯食べた？'))
-  .catch(() => {})
-   return;
+  msg.awaitReactions({ filter, max: 1, time: 15000, errors: ['time'] })
+  .then(() => console.log('リアクションされました'))
+  .catch(() => {}) // 時間切れの処理。エラーを防ぐために何もしない場合でも書く必要がある（何かすることもできる）
 }})
 
 //メッセージに反応して行動を起こす
