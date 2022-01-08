@@ -68,8 +68,9 @@ client.on('message', async msg => {
       ].join('\n')
     )
   }
+  
   //メンションしたユーザーのメッセージを削除
-      if (msg.content.startsWith('!mmd') && msg.guild) {
+      if (msg.content.startsWith('hu!mmd') && msg.guild) {
         // 指定されたメッセージの数を取得
         const how = msg.content.split(' ')[1];
         // メンションでユーザーが指定されていなかったら処理を止める
@@ -82,6 +83,7 @@ client.on('message', async msg => {
         const mentionFilter =  await messages.filter(msg => mentionMembers.some(userID => userID == msg.author.id))
         // それらのメッセージを一括削除
         msg.channel.bulkDelete(mentionFilter)
+        msg.cnannel.send('メッセージの削除が完了しました')
    }
 })
 
@@ -92,4 +94,4 @@ if (process.env.DISCORD_BOT_TOKEN == undefined) {
 }
 
 //謎
-client.login('TOKEN')
+client.login(process.env.DISCORD_BOT_TOKEN)
