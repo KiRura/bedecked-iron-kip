@@ -15,11 +15,13 @@ const client = new Client({ intents: Intents.ALL })
 
 //キーワードに反応してメッセージを返す
 client.on('message', async msg => {
-if(msg.match(
-  /おは|おっは|オハ|ｵﾊ/g
-))
-  {
+  if(msg.author.bot) return;
+  if(msg.content.match(
+    /おは|おっは|オハ|ｵﾊ/g
+  ))
+ {
 　msg.channel.send('おはよう！今日も1日頑張ってね！！')
+   return;
 }})
 
 //メッセージに反応して行動を起こす
