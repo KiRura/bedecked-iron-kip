@@ -68,6 +68,21 @@ client.on('message', async msg => {
       ].join('\n')
     )
   }
+  //メンションしたユーザーのメッセージを削除
+      if (msg.content.startsWith('!mmd') && msg.guild) {
+        // 指定されたメッセージの数を取得
+        const how = msg.content.split(' ')[1];
+        // メンションでユーザーが指定されていなかったら処理を止める
+        if (!how || msg.mentions.members.size == 0) return;
+        // 指定された数のメッセージを取得
+        const messages = await msg.channel.messages.fetch({ limit: how }) 
+        // メンションで指定されたユーザーのIDのみを配列に入れる
+        const mentionMembers = await msg.mentions.members.map(m => m.user.id)
+        // 指定されたユーザーが発言したメッセージのみを抽出
+        const mentionFilter =  await messages.filter(msg => mentionMembers.some(userID => userID == msg.author.id))
+        // それらのメッセージを一括削除
+        msg.channel.bulkDelete(mentionFilter)
+   }
 })
 
 //トークンエラー
