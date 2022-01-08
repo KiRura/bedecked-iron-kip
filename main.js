@@ -21,14 +21,9 @@ client.on('message', async msg => {
   ))
  {
 　msg.react('929303726169157692')
-   const filter =
-         (reaction, user) =>
-   user.id ===
-         msg.author.id &&
-         reaction.emoji.name ===
-         '929303726169157692'
+   const filter = (reaction, user) => user.id === msg.author.id && reaction.emoji.name === '929303726169157692'
   msg.awaitReactions({ filter, max: 2, time: 15000, errors: ['time'] })
-  .then(() => msg.channel.send('リアクションされました'))
+  .then(() => msg.channel.send('おはよう！顔洗った？歯磨いた？朝ご飯食べた？'))
   .catch(() => {})
    return;
 }})
