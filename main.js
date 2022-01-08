@@ -18,6 +18,7 @@ client.on('ready', () => {
       name: `${client.ws.ping}ms`
     })
   }, 10000)
+  console.log(`Logged in as ${client.user.tag}!`)
 })
 
 //プレフィックス指定
@@ -50,6 +51,23 @@ client.on('message', async msg => {
     });
     emojis.slice(0, choices.length).forEach(emoji => poll.react(emoji))
   }
+  
+  //ユーザーの使用デバイス
+  if (msg.content === 'status') {
+    const userStatus = msg.author.presence.clientStatus
+
+    if (!userStatus) {
+      return msg.channel.send('どのデバイスからもアクセスされていません。')
+    }
+
+    msg.channel.send(
+      [
+        'desktop: ' + (userStatus.desktop || 'offline'),
+        'mobile: ' + (userStatus.mobile || 'offline'),
+        'web: ' + (userStatus.web || 'offline'),
+      ].join('\n')
+    )
+  }
 })
 
 //トークンエラー
@@ -59,4 +77,4 @@ if (process.env.DISCORD_BOT_TOKEN == undefined) {
 }
 
 //謎
-client.login(process.env.DISCORD_BOT_TOKEN)
+client.login('TOKEN')
