@@ -12,7 +12,7 @@ const { Client, Intents } = require('discord.js')
 const client = new Client({ intents: Intents.ALL })
 
 //○○をプレイ中
-client.user.setActivity('テッテテー！騙されました！', { type: 'PLAYING' })
+client.user.act('テッテテー！騙されました！', { type: 'PLAYING' })
 
 //キーワードに反応してメッセージを返す
 client.on('message', async msg => {
