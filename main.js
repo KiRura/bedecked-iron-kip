@@ -35,8 +35,7 @@ client.on('message', async msg => {
     const filter = (reaction, user) => user.id === msg.author.id && reaction.emoji.name === '929303726169157692'
     msg.awaitReactions({ filter, max: 1, time: 15000, errors: ['time'] })
   .then(() => console.log('リアクションされました'))
-  .catch(() => {}) // 時間切れの処理。エラーを防ぐために何もしない場合でも書く必要がある（何かすることもできる）
-    
+  .catch(() => {msg.reactions.removeAll()}) // 時間切れの処理。エラーを防ぐために何もしない場合でも書く必要がある（何かすることもできる）
   }
   
   //投票機能
