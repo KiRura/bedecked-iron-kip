@@ -27,15 +27,16 @@ const prefix = 'hu!'
 //メッセージ送信系
 client.on('message', async msg => {
   
-  //おはように反応
+  //おはようにリアクションをつける
   if(msg.author.bot) return;
   if(msg.content.match(
     /おは|おっは|オハ|ｵﾊ/g)){
     msg.react('929303726169157692')
+    //15秒以内に送信者からリアクションが付与されたらメッセージを返す
     const filter = (reaction, user) => user.id === msg.author.id && reaction.emoji.name === '929303726169157692'
     msg.awaitReactions({ filter, max: 1, time: 15000, errors: ['time'] })
   .then(() => console.log('リアクションされました'))
-  .catch(() => {msg.reactions.removeAll()}) // 時間切れの処理。エラーを防ぐために何もしない場合でも書く必要がある（何かすることもできる）
+  .catch(() => {msg.reactions.removeAll()}) //時間切れのときリアクションを消す
   }
   
   //投票機能
