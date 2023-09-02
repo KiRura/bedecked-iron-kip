@@ -1,3 +1,5 @@
+初めてのJavaScriptと初めてのDiscordのBot作り
+
 # Discord sample bot working on glitch.com
 
 ## How to launch bot
